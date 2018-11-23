@@ -1,0 +1,241 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usetheme{metropolis}
+\title{Developers Conference 2018}
+
+\subtitle{Introduction to {\LaTeX}}
+
+\author{Ish Sookun}
+\institute[La Sentinelle Ltd] % (optional, but mostly needed)
+{
+  %\inst{}%
+  Linux System Administrator\\
+  La Sentinelle Ltd\\
+  LSL Digital \textit{(we develop \& host digital products for La Sentinelle Ltd \& subsidiaries)}\\ 
+  %openSUSE Advocate (since 2009)
+  \begin{flushright}
+    \includegraphics[scale=0.15]{logo-lsl.png}
+  \end{flushright}
+}
+\date{19 May 2018}
+\subject{Developers Conference 2018}
+\setbeamertemplate{footline}{
+  % below is the line for 16:9 aspect ratio
+  \raisebox{3pt}{\makebox[\paperwidth]{\hfill\makebox[575pt]{Developers Conference 2018 | Introduction to {\LaTeX} | Ish Sookun | Voil\`a Hotel 19 May 2018\hspace{46ex} We're on slide \insertframenumber\hspace{1ex}of \inserttotalframenumber\hspace{1ex}:)}}}}
+  % below is the footline for 4:3 aspect ratio
+  %\raisebox{3pt}{\makebox[\paperwidth]{\hfill\makebox[500pt]{Developers Conference 2018 | Introduction to {\LaTeX} | Ish Sookun | Voil\`a Hotel 19 May 2018\hspace{10ex} We're on slide \insertframenumber\hspace{1ex}of \inserttotalframenumber\hspace{1ex}:)}}}}
+\begin{document}
+
+\begin{frame}[plain,noframenumbering]
+  \titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+  \tableofcontents
+  % [pausesections]
+\end{frame}
+
+\section{What is {\LaTeX}?}
+
+\subsection{How is it pronounced?}
+\begin{frame}{How is it pronounced?}
+  There is no specific recommendation on pronouncing {\LaTeX} but the {\TeX} part is pronounced \underline{\bf tech} as explained by its creator Prof. Donald E. Knuth. {\TeX} in Greek means \textit{art}, \textit{craft} or \textit{technique}.
+
+\end{frame}
+
+\subsection{A brief history of {\LaTeX}}
+\begin{frame}{A brief history of {\LaTeX}}
+  The {\LaTeX} program is a computer typesetting for placing text on a page. It was written by Dr. Leslie Lamport while using {\TeX}'s typesetting engine \& macro system developed by Prof. Donald E. Knuth.
+
+  \hspace{4ex}1962 - {\TeX} created by Prof. Donald E. Knuth\\
+  \hspace{4ex}1968 - {\TeX} and Metafont\\
+  \hspace{4ex}1982 - {\TeX}82\\
+  \hspace{4ex}1983 - {\LaTeX}2.09 created by Dr. Leslie Lamport\\
+  \hspace{4ex}1994 - {\LaTeXe}
+
+  {\LaTeX}3 is under development since 2014.
+\end{frame}
+
+\subsection{Where is it used?}
+\begin{frame}{Where is it used?}
+  Over the years {\LaTeX} has become the standard document system for writing technical and scientific papers. It's widely used by the scientific community to produce documents that contains formulas, for example the Schrodinger equation:
+
+  \begin{equation*}
+    e^{i\hat{k}.\hat{r}}=\sum\limits_{l=0}^{\infty }\left( 2l+1\right)
+    i^{l}j_{l}\left( kr\right) P_{l}\left( \cos \theta \right) 
+  \end{equation*}
+
+  {\LaTeX} is also used by scholars to write documents that contain non-Latin scripts such as Arabic, Greek, Sanskrit, Tamil, etc.
+
+\end{frame}
+
+\section{Getting {\LaTeX}}
+\subsection{Installation}
+\begin{frame}{Installation}
+  I use Texmaker on openSUSE Tumbleweed and installation is straighforward via the command-line console:\\
+
+    {\tt \vspace{0.5em}\hspace{8ex}sudo zypper in texmaker}
+  
+  Installation packages are available for Linux distributions, Windows and macOS from the project website {\bf xm1math.net/texmaker}.\\
+  
+  {\vspace{1em} Texmaker is a cross-platform open source {\LaTeX} editor with an integrated PDF viewer. It's written in C++ and uses the Qt interface.}
+\end{frame}
+
+\subsection{Configuring Visual Studio Code}
+\begin{frame}{Configuring Visual Studio Code}
+  A {\LaTeX} extension by James Yu is available through the Visual Studio Marketplace. Press Ctrl + P, paste the following command and press enter.
+  \begin{center}
+    {\tt ext install James-Yu.latex-workshop}
+  \end{center}
+
+  The default config will use the {\tt pdflatex} engine but it can be easily configured to use {\tt xelatex}, {\tt lualatex} or some other engine.
+\end{frame}
+
+\section{Structure of {\LaTeX} documents}
+%\subsection{Example code}
+\begin{frame}[fragile]\frametitle{Example code}
+  \begin{verbatim}
+    % Simple LaTeX document
+    
+    \documentclass[11pt]{article}
+      \title{A Simple {\LaTeX} Document}
+      \author{Ish Sookun\\ La Sentinelle Ltd}
+      \date{\today}
+
+      \begin{document}
+        \begin{abstract}
+          This is an abstract.
+        \end{abstract}
+  \end{verbatim}
+\end{frame}
+
+\subsection{documentclass, options, sections etc}
+\begin{frame}[fragile]\frametitle{\textbackslash documentclass}
+  \begin{columns}[t,onlytextwidth]
+    \begin{column}{0.475\textwidth}
+       Define the document type using the {\bf documentclass} command. Possible classes are:\\
+       \begin{itemize}
+         \item {article}
+         \item {report}
+         \item {book}
+         \item {beamer}
+       \end{itemize}
+    \end{column}
+    \begin{column}{0.475\textwidth}  %%<--- here
+      The {\bf documentclass} calls a document template that determines document characteristics such as headers, margins, and so on.\\ Example usage:\\ 
+      \begin{verbatim}
+\documentclass[11pt]{article}
+      \end{verbatim}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{\textbackslash begin\{document\}}
+  \begin{columns}[t,onlytextwidth]
+    \begin{column}{0.475\textwidth}
+      Everything that makes up your document should reside within the {\bf document} environment.
+      \begin{verbatim}
+\begin{document}
+  ...
+\end{document}
+
+      \end{verbatim} 
+
+    \end{column}
+    \begin{column}{0.475\textwidth}
+      Within the {\bf document} block you can now add an abstract and sections containing paragraphs.
+      \begin{verbatim}
+      \section{Introduction}
+        All our digital products
+        are deployed on Amazon
+        Web Services.\\
+
+        Expenses incurred by
+        running instances...
+      \end{verbatim} 
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{\textbackslash maketitle}
+  \begin{columns}[t,onlytextwidth]
+    \begin{column}{0.475\textwidth}
+       To display a title you need to declare the following components in the preamble:\\
+       \begin{itemize}
+         \item {title}
+         \item {author}
+         \item {date}
+       \end{itemize}
+    \end{column}
+    \begin{column}{0.475\textwidth}  %%<--- here
+      You can accomplish the whole with the following commands:
+      \begin{verbatim}
+\title{Cloud Expenses Report}
+\author{Ish Sookun}
+\date{\today}
+...
+\maketitle
+      \end{verbatim}
+    These commands should be in the preamble, except the {\bf maketitle} command which comes after the {\tt \textbackslash begin\{document\}}.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{\textbackslash begin\{abstract\}}
+  \begin{columns}[t,onlytextwidth]
+    \begin{column}{0.475\textwidth}
+       A block of text can be formatted by declaring an environment called {\bf abstract}. Environments are delimited by an opening {\tt \textbackslash begin} and a closing {\tt \textbackslash end} tag in the form:
+       \begin{verbatim}
+\begin{abstract}
+This report was prepared after
+analyzing the expenses incurred
+over a period of twelve months
+starting January 2017.
+\end{abstract}
+       \end{verbatim}       
+    \end{column}
+    \begin{column}{0.475\textwidth} 
+      An abstract is optional and I would recommend it only if you are writing a report that is several pages long. Otherwise, you may also have a {\bf section} that is called {\em abstract} in your report.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\subsection{Demo}
+\begin{frame}[plain]{}
+  Woohoo! It's demo time :)
+\end{frame}
+
+\begin{frame}{openSUSE Leap 15 - release is coming! 25 May 2018 :)}
+  \begin{center}
+    \includegraphics[scale=1.0]{official-logo-opensuse.png}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle<presentation>{Further Reading}
+    
+  \begin{thebibliography}{10}
+    
+  \beamertemplatebookbibitems
+  % Start with overview books.
+
+  \bibitem{texbook}
+    The {\TeX}book
+    \newblock {by Donald E. Knuth}
+  \bibitem{latex}
+    {\LaTeX} - A Document Preparation System by Dr. Leslie Lamport
+    \newblock {by Dr. Leslie Lamport}
+  %\beamertemplatearticlebibitems
+  % Followed by interesting articles. Keep the list short. 
+
+  %\bibitem{sharelatex}
+  %  Lengths in LaTeX online
+  %  \newblock {https://www.sharelatex.com/learn/lengths\_in\_LaTeX}
+  \end{thebibliography}
+
+  {\em\small I used the Metropolis beamer theme by Matthias Vogelgesang for this presentation. Its source can be obtained at github.com/matze/mtheme.}
+\end{frame}
+
+\end{document}
+
